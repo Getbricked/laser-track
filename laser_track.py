@@ -15,6 +15,8 @@ frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 center_x = frame_width // 2
 center_y = frame_height // 2
 
+print(f"Center point: {center_x}x{center_y}")
+
 positions = []
 frame_count = 0
 
@@ -41,7 +43,7 @@ while True:
                 cy = int(M["m01"] / M["m00"])
                 # Shift coordinates so center is (0,0)
                 shifted_x = cx - center_x
-                shifted_y = cy - center_y
+                shifted_y = center_y - cy  # Reverse subtraction for correct direction
                 positions.append((frame_count, shifted_x, shifted_y))
     frame_count += 1
 
